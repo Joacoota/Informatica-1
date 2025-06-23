@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+	int nEstu;    
+	int cal;  
+	int sumaCal = 0;   
+	int calAlta = -1;   
+	int calBaja = 101; 
+	
+	
+	do {
+		printf("Ingrese la cantidad de estudiantes a evaluar : "); // solicita la cantidad de estudiantes 
+		scanf("%d", &nEstu);
+		
+		if (nEstu <= 0) {
+			
+			printf("Error: La cantidad de estudiantes debe ser un número positivo.\n"); // por si el usuario ingresa un numero menor a 0 
+		}
+	} while (nEstu <= 0);
+	
+	
+	for (int i = 0; i < nEstu; i++) {
+		do {
+			printf("Ingrese la calificación del estudiante %d (0 - 100): ", i + 1);  //ingresar  las notas de los estudiantes 
+			
+				scanf("%d", &cal);
+				
+			if (cal < 0 || cal > 100) {
+				
+				printf("Error: La calificación debe estar en el rango de 0 a 100.\n"); //si el usuario ingresa un valor mayor a 100 y menor que 0 vuelve a ingresar
+			}
+		} while (cal < 0 || cal > 100);
+			
+			sumaCal += cal;
+		
+				if (cal > calAlta) {  //calificacion mas alta
+					
+					calAlta = cal;
+		}
+		
+			if (cal < calBaja ) {	//calificacion mas baja
+				
+				calBaja  = cal;
+		}
+	}
+	
+	double promedio = (double)sumaCal / nEstu;	//calculo el promedio de las notas
+	
+	//imprime los resultados
+	printf("\nPromedio de calificaciones: %.2f\n", promedio);  
+	printf(" La calificación más alta: %d\n", calAlta);
+	printf("La calificación más baja: %d\n", calBaja );
+	
+	return 0;
+}
